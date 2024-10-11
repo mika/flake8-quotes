@@ -14,8 +14,9 @@ class TestFlake8Stdin(TestCase):
     def test_stdin(self):
         """Test using stdin."""
         filepath = get_absolute_path('data/doubles.py')
+        flakecfg = get_absolute_path('flake8.cfg')
         with open(filepath, 'rb') as f:
-            p = subprocess.Popen(['flake8', '--select=Q', '-'], stdin=f,
+            p = subprocess.Popen(['flake8', '--config', flakecfg, '--select=Q', '-'], stdin=f,
                                  stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             stdout, stderr = p.communicate()
 
